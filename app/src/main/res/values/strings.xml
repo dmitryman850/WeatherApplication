@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WeatherApplication</string>
+    <string name="title_forecast">Forecast</string>
+    <string name="title_today">Today</string>
+</resources>
