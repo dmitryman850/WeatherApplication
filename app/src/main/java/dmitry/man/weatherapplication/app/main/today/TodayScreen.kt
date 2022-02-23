@@ -1,4 +1,4 @@
-package dmitry.man.weatherapplication.ui.today
+package dmitry.man.weatherapplication.app.main.today
 
 import com.arellomobile.mvp.MvpView
 

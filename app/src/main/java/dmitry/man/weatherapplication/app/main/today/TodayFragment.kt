@@ -1,4 +1,4 @@
-package dmitry.man.weatherapplication.ui.today
+package dmitry.man.weatherapplication.app.main.today
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,10 @@ import dmitry.man.weatherapplication.databinding.FragmentTodayBinding
 
 class TodayFragment : MvpAppCompatFragment(), TodayScreen {
 
-    private var _binding: FragmentTodayBinding? = null
-
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentTodayBinding
 
     @InjectPresenter
-    private var presenter: TodayPresenter? = null
+    private lateinit var presenter: TodayPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,12 +21,7 @@ class TodayFragment : MvpAppCompatFragment(), TodayScreen {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentTodayBinding.inflate(inflater, container, false)
+        binding = FragmentTodayBinding.inflate(inflater)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

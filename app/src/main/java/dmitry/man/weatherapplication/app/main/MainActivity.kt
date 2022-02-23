@@ -1,4 +1,4 @@
-package dmitry.man.weatherapplication.ui.main
+package dmitry.man.weatherapplication.app.main
 
 import android.os.Bundle
 import androidx.navigation.findNavController
@@ -14,7 +14,7 @@ class MainActivity : MvpAppCompatActivity(), MainScreen {
     private lateinit var binding: ActivityMainBinding
 
     @InjectPresenter
-    private var presenter: MainPresenter? = null
+    private lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
