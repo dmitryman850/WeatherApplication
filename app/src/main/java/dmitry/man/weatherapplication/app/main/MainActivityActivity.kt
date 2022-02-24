@@ -9,7 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dmitry.man.weatherapplication.R
 import dmitry.man.weatherapplication.databinding.ActivityMainBinding
 
-class MainActivity : MvpAppCompatActivity(), MainScreen {
+class MainActivityActivity : MvpAppCompatActivity(), MainActivityScreen {
 
     private lateinit var binding: ActivityMainBinding
 

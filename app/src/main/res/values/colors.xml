@@ -16,4 +16,9 @@
     <color name="rainbow_6">#A31212</color>
 
     <color name="separator_gray">#979292</color>
+    <color name="today_yellow">#E3D915</color>
+    <color name="forecast_yellow">#E3D915</color>
+    <color name="today_text_color">#131313</color>
+    <color name="today_share">#131313</color>
+    <color name="forecast_blue">#1465CA</color>
 </resources>
