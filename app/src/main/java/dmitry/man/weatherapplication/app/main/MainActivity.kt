@@ -9,12 +9,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dmitry.man.weatherapplication.R
 import dmitry.man.weatherapplication.databinding.ActivityMainBinding
 
-class MainActivityActivity : MvpAppCompatActivity(), MainActivityScreen {
+class MainActivity : MvpAppCompatActivity(), MainActivityScreen {
 
     private lateinit var binding: ActivityMainBinding
 
     @InjectPresenter
-    private lateinit var presenter: MainPresenter
+    lateinit var activityPresenter: MainActivityPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

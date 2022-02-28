@@ -1,0 +1,34 @@
+package dmitry.man.weatherapplication.app.main.interactor
+
+import dmitry.man.weatherapplication.app.data.api.WeatherApi
+import dmitry.man.weatherapplication.app.data.model.TodayWeatherData
+import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.subjects.BehaviorSubject
+
+class WeatherInteractor(private val weatherApi: WeatherApi) {
+
+    private val weatherTodaySubject = BehaviorSubject.create<TodayWeatherData>()
+
+    fun observeTodayWeather(): Observable<TodayWeatherData> {
+        return weatherTodaySubject.hide()
+    }
+
+    fun requestTodayWeather(): Completable {
+        return Completable.fromAction {
+            val response = weatherApi
+                .getTodayWeatherData(LAT_CITY, LON_CITY, APP_WEATHER_ID)
+                .execute()
+
+            val result = response.body()
+                ?: throw IllegalArgumentException("Today weather response is null")
+            weatherTodaySubject.onNext(result)
+        }
+    }
+
+    companion object {
+        private const val LAT_CITY = 35F
+        private const val LON_CITY = 139f
+        private const val APP_WEATHER_ID = "f122a3a1694ef074598610d2d01c3293"
+    }
+}

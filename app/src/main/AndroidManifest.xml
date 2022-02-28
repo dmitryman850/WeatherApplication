@@ -16,7 +16,7 @@
 
 
         <activity
-            android:name="dmitry.man.weatherapplication.app.main.MainActivityActivity"
+            android:name="dmitry.man.weatherapplication.app.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

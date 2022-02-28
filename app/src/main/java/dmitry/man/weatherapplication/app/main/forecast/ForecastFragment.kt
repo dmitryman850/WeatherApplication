@@ -8,12 +8,12 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import dmitry.man.weatherapplication.databinding.FragmentForecastBinding
 
-class ForecastFragment : MvpAppCompatFragment(), ForecastScreen {
+class ForecastFragment : MvpAppCompatFragment(), ForecastFragmentScreen {
 
     private lateinit var binding: FragmentForecastBinding
 
     @InjectPresenter
-    private lateinit var presenter: ForecastPresenter
+    lateinit var fragmentPresenter: ForecastFragmentPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater,

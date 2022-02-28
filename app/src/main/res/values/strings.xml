@@ -4,4 +4,11 @@
     <string name="title_today">Today</string>
     <string name="today_title">Today</string>
     <string name="share_today">Share</string>
+
+    <string name="weather_temperature_placeholder">%s °C</string>
+    <string name="weather_percent_placeholder">%s %%</string>
+    <string name="weather_not_found">N/D</string>
+    <string name="weather_hpa_placeholder">%s hPa</string>
+    <string name="weather_wind_speed_placeholder">%s km/h</string>
+    <string name="weather_rain_mm_placeholder">%s mm</string>
 </resources>
