@@ -18,61 +18,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/ll_today"
+    <View
+        android:id="@+id/v_hor_line"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="4dp"
+        android:background="@drawable/horizontal_gradient_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_today">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/rainbow_1" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/rainbow_2" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/rainbow_3" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/rainbow_4" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/rainbow_5" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/rainbow_6" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/tv_title_today" />
 
     <View
         android:id="@+id/v_type_weather"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/ic_sun_tab"
         android:backgroundTint="@color/today_yellow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_today" />
+        app:layout_constraintTop_toBottomOf="@id/v_hor_line" />
 
     <TextView
         android:id="@+id/tv_city_country_today"
@@ -91,6 +56,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
+        android:textColor="@color/today_blue"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="@id/v_vert_line"
         app:layout_constraintEnd_toStartOf="@id/v_vert_line"
         app:layout_constraintTop_toTopOf="@id/v_vert_line"
         tools:text="22" />
@@ -99,17 +67,19 @@
         android:id="@+id/v_vert_line"
         android:layout_width="2dp"
         android:layout_height="20dp"
-        android:background="@color/rainbow_2"
-        app:layout_constraintBottom_toBottomOf="@id/v_separator_1"
+        android:layout_marginTop="20dp"
+        android:background="@color/today_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/v_type_weather" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_city_country_today" />
 
     <TextView
         android:id="@+id/tv_type_sun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:textColor="@color/today_blue"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="@id/v_vert_line"
         app:layout_constraintStart_toEndOf="@id/v_vert_line"
         app:layout_constraintTop_toTopOf="@id/v_vert_line"
@@ -119,17 +89,17 @@
         android:id="@+id/v_separator_1"
         android:layout_width="200dp"
         android:layout_height="1dp"
+        android:layout_marginTop="50dp"
         android:background="@color/separator_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.40" />
+        app:layout_constraintTop_toBottomOf="@id/v_vert_line" />
 
     <View
         android:id="@+id/v_rain_percent_today"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/ic_cloud_tab"
         android:backgroundTint="@color/today_yellow"
@@ -192,10 +162,9 @@
         android:id="@+id/v_speed_wind_today"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/ic_baseline_wind_speed"
         android:backgroundTint="@color/today_yellow"
-        app:layout_constraintBottom_toBottomOf="@id/v_separator_2"
         app:layout_constraintEnd_toStartOf="@id/v_direction_wind_today"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/v_rain_percent_today" />
@@ -234,11 +203,11 @@
         android:id="@+id/v_separator_2"
         android:layout_width="200dp"
         android:layout_height="1dp"
+        android:layout_marginTop="20dp"
         android:background="@color/separator_gray"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_speed_wind_today"
         app:layout_constraintVertical_bias="0.70" />
 
     <TextView
