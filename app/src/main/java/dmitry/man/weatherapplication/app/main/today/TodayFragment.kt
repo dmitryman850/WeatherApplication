@@ -41,6 +41,7 @@ class TodayFragment : MvpAppCompatFragment(), TodayFragmentScreen {
         val notFound = resources.getString(R.string.weather_not_found)
 
         val cityName = data.name ?: notFound
+        val countryName = data.sys?.country
         val temp = (data.main?.temp?.minus(KELVIN_TO_CELCIUS_ZERO))?.toInt()?.toString() ?: notFound
         val rainPercent = data.main?.humidity?.toString() ?: notFound
         val hpa = data.main?.pressure?.toString() ?: notFound
@@ -50,7 +51,8 @@ class TodayFragment : MvpAppCompatFragment(), TodayFragmentScreen {
         val rainmm = data.clouds?.all?.toString() ?: notFound
         val descriptionWeather = data.weather?.get(FIRST_ITEM)?.main ?: notFound
 
-        binding.tvCityCountryToday.text = cityName
+        binding.tvCityCountryToday.text =
+            resources.getString(R.string.weather_city_placeholder, cityName, countryName)
         binding.tvTemp.text = resources.getString(R.string.weather_temperature_placeholder, temp)
         binding.tvTypeSun.text = descriptionWeather
         binding.tvRainPercentToday.text =
