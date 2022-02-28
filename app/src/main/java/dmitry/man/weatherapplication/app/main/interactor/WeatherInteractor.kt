@@ -1,6 +1,7 @@
 package dmitry.man.weatherapplication.app.main.interactor
 
 import dmitry.man.weatherapplication.app.data.api.WeatherApi
+import dmitry.man.weatherapplication.app.data.model.FiveDaysWeatherData
 import dmitry.man.weatherapplication.app.data.model.TodayWeatherData
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -9,9 +10,14 @@ import io.reactivex.subjects.BehaviorSubject
 class WeatherInteractor(private val weatherApi: WeatherApi) {
 
     private val weatherTodaySubject = BehaviorSubject.create<TodayWeatherData>()
+    private val weatherFiveDaysSubject = BehaviorSubject.create<FiveDaysWeatherData>()
 
     fun observeTodayWeather(): Observable<TodayWeatherData> {
         return weatherTodaySubject.hide()
+    }
+
+    fun observeFiveDaysWeather(): Observable<FiveDaysWeatherData> {
+        return weatherFiveDaysSubject.hide()
     }
 
     fun requestTodayWeather(): Completable {
@@ -23,6 +29,18 @@ class WeatherInteractor(private val weatherApi: WeatherApi) {
             val result = response.body()
                 ?: throw IllegalArgumentException("Today weather response is null")
             weatherTodaySubject.onNext(result)
+        }
+    }
+
+    fun requestFiveDaysWeather(): Completable {
+        return Completable.fromAction {
+            val response = weatherApi
+                .getListWeatherData(LAT_CITY, LON_CITY, APP_WEATHER_ID)
+                .execute()
+
+            val result = response.body()
+                ?: throw IllegalArgumentException("Five days weather response is null")
+            weatherFiveDaysSubject.onNext(result)
         }
     }
 

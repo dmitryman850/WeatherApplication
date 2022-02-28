@@ -3,7 +3,6 @@ package dmitry.man.weatherapplication.app.main.today
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import dmitry.man.weatherapplication.app.WeatherApplication
-import dmitry.man.weatherapplication.app.data.model.TodayWeatherData
 import dmitry.man.weatherapplication.app.main.interactor.WeatherInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

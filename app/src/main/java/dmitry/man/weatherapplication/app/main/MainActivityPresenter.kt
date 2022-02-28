@@ -26,6 +26,14 @@ class MainActivityPresenter : MvpPresenter<MainActivityScreen>() {
             }
             .subscribe()
             .also { disposables.add(it) }
+
+        weatherInteractor.requestFiveDaysWeather()
+            .subscribeOn(Schedulers.io())
+            .doOnError {
+                it.printStackTrace()
+            }
+            .subscribe()
+            .also { disposables.add(it) }
     }
 
     override fun onDestroy() {
