@@ -22,7 +22,6 @@
         android:id="@+id/v_hor_line"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="4dp"
         android:background="@drawable/horizontal_gradient_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

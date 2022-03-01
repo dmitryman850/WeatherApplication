@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import dmitry.man.weatherapplication.R
@@ -18,6 +19,8 @@ class ForecastFragment : MvpAppCompatFragment(), ForecastFragmentScreen {
     @InjectPresenter
     lateinit var fragmentPresenter: ForecastFragmentPresenter
 
+    private lateinit var forecastAdapter: ForecastAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,6 +28,13 @@ class ForecastFragment : MvpAppCompatFragment(), ForecastFragmentScreen {
     ): View {
         binding = FragmentForecastBinding.inflate(inflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        forecastAdapter = ForecastAdapter()
+        binding.rvForecast.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvForecast.adapter = forecastAdapter
     }
 
     override fun showLoad(show: Boolean) {
@@ -41,5 +51,7 @@ class ForecastFragment : MvpAppCompatFragment(), ForecastFragmentScreen {
         val cityName = data.city?.name ?: notFound
 
         binding.tvCityForecast.text = cityName
+
+        data.list?.let { forecastAdapter.submitList(it) }
     }
 }

@@ -12,4 +12,5 @@
     <string name="weather_hpa_placeholder">%s hPa</string>
     <string name="weather_wind_speed_placeholder">%s km/h</string>
     <string name="weather_rain_mm_placeholder">%s mm</string>
+    <string name="today">Today</string>
 </resources>
