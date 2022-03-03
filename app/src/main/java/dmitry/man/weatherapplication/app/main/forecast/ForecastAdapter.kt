@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dmitry.man.weatherapplication.R
-import dmitry.man.weatherapplication.app.data.model.ListItem
+import dmitry.man.weatherapplication.app.data.model.FiveDaysWeatherItemModel
 
 class ForecastAdapter(
 ) : RecyclerView.Adapter<BaseViewHolderForecast<*>>() {
 
-    private var listOfWeather: List<ListItem?>? = null
+    private var listOfWeather: List<FiveDaysWeatherItemModel>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolderForecast<*> {
         var holder: BaseViewHolderForecast<*>? = null
@@ -61,7 +61,7 @@ class ForecastAdapter(
         return listOfWeather?.size ?: 0
     }
 
-    fun submitList(newList: List<ListItem?>) {
+    fun submitList(newList: List<FiveDaysWeatherItemModel>) {
         listOfWeather = newList
         notifyDataSetChanged()
     }

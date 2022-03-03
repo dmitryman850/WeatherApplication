@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import dmitry.man.weatherapplication.R
-import dmitry.man.weatherapplication.app.data.model.FiveDaysWeatherData
+import dmitry.man.weatherapplication.app.data.model.FiveDaysWeatherModel
 import dmitry.man.weatherapplication.databinding.FragmentForecastBinding
 
 class ForecastFragment : MvpAppCompatFragment(), ForecastFragmentScreen {
@@ -41,16 +42,16 @@ class ForecastFragment : MvpAppCompatFragment(), ForecastFragmentScreen {
     }
 
     override fun showError() {
-
+        Toast.makeText(context, R.string.toast_error, Toast.LENGTH_LONG).show()
     }
 
-    override fun refreshWeatherData(data: FiveDaysWeatherData) {
+    override fun refreshWeatherData(data: FiveDaysWeatherModel) {
         val notFound = resources.getString(R.string.weather_not_found)
 
-        val cityName = data.city?.name ?: notFound
+        val cityName = data.cityName ?: notFound
 
         binding.tvCityForecast.text = cityName
 
-        data.list?.let { forecastAdapter.submitList(it) }
+        data.listWeather?.let { forecastAdapter.submitList(it) }
     }
 }

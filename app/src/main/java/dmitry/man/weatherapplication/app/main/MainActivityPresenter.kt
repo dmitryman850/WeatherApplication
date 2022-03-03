@@ -1,5 +1,6 @@
 package dmitry.man.weatherapplication.app.main
 
+import android.content.Context
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import dmitry.man.weatherapplication.app.WeatherApplication
@@ -13,6 +14,9 @@ class MainActivityPresenter : MvpPresenter<MainActivityScreen>() {
 
     @Inject
     lateinit var weatherInteractor: WeatherInteractor
+
+    @Inject
+    lateinit var context: Context
 
     private val disposables = CompositeDisposable()
 

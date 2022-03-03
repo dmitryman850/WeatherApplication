@@ -3,7 +3,7 @@ package dmitry.man.weatherapplication.app.main.forecast
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import dmitry.man.weatherapplication.app.data.model.FiveDaysWeatherData
+import dmitry.man.weatherapplication.app.data.model.FiveDaysWeatherModel
 
 interface ForecastFragmentScreen : MvpView {
 
@@ -14,5 +14,5 @@ interface ForecastFragmentScreen : MvpView {
     fun showError()
 
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun refreshWeatherData(data: FiveDaysWeatherData)
+    fun refreshWeatherData(data: FiveDaysWeatherModel)
 }

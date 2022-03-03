@@ -66,4 +66,6 @@ dependencies {
     kapt "androidx.room:room-compiler:2.4.2"
     implementation "androidx.room:room-rxjava2:2.4.2"
 
+    implementation 'com.github.pwittchen:reactivenetwork-rx2:3.0.8'
+
 }

@@ -2,11 +2,15 @@ package dmitry.man.weatherapplication.app.di
 
 import android.content.Context
 import androidx.room.Room
+import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
-import dmitry.man.weatherapplication.app.data.WeatherRepository
+import dmitry.man.weatherapplication.app.data.FiveDaysWeatherRepository
+import dmitry.man.weatherapplication.app.data.TodayWeatherRepository
 import dmitry.man.weatherapplication.app.data.api.WeatherApi
+import dmitry.man.weatherapplication.app.db.FiveDaysWeatherDatabase
 import dmitry.man.weatherapplication.app.db.TodayWeatherDatabase
+import dmitry.man.weatherapplication.app.db.dao.FiveDaysWeatherDao
 import dmitry.man.weatherapplication.app.db.dao.TodayWeatherDao
 import dmitry.man.weatherapplication.app.main.interactor.WeatherInteractor
 import retrofit2.Retrofit
@@ -35,9 +39,10 @@ class MainModule {
     @Provides
     fun provideWeatherInteractor(
         weatherApi: WeatherApi,
-        weatherRepo: WeatherRepository
+        todayWeatherRepo: TodayWeatherRepository,
+        fiveDaysWeatherRepo: FiveDaysWeatherRepository
     ): WeatherInteractor {
-        return WeatherInteractor(weatherApi, weatherRepo)
+        return WeatherInteractor(weatherApi, todayWeatherRepo, fiveDaysWeatherRepo)
     }
 
     @Singleton
@@ -52,13 +57,38 @@ class MainModule {
 
     @Singleton
     @Provides
+    fun provideFiveDaysWeatherDatabase(context: Context): FiveDaysWeatherDatabase {
+        return Room.databaseBuilder(
+            context,
+            FiveDaysWeatherDatabase::class.java, "fiveDaysWeather.db"
+        ).build()
+    }
+
+    @Singleton
+    @Provides
     fun provideTodayWeatherDao(database: TodayWeatherDatabase): TodayWeatherDao {
         return database.getTodayWeatherDao()
     }
 
     @Singleton
     @Provides
-    fun provideRepository(todayWeatherDao: TodayWeatherDao): WeatherRepository {
-        return WeatherRepository(todayWeatherDao)
+    fun provideFiveDaysWeatherDao(database: FiveDaysWeatherDatabase): FiveDaysWeatherDao {
+        return database.getFiveDaysWeatherDao()
     }
+
+    @Singleton
+    @Provides
+    fun provideTodayWeatherRepository(todayWeatherDao: TodayWeatherDao): TodayWeatherRepository {
+        return TodayWeatherRepository(todayWeatherDao)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFiveDaysWeatherRepository(fiveDaysWeatherDao: FiveDaysWeatherDao, gson: Gson): FiveDaysWeatherRepository {
+        return FiveDaysWeatherRepository(fiveDaysWeatherDao, gson)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGson(): Gson = Gson()
 }

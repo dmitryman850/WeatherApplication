@@ -1,26 +1,25 @@
 package dmitry.man.weatherapplication.app.main.interactor
 
-import dmitry.man.weatherapplication.app.data.WeatherRepository
+import dmitry.man.weatherapplication.app.data.FiveDaysWeatherRepository
+import dmitry.man.weatherapplication.app.data.TodayWeatherRepository
 import dmitry.man.weatherapplication.app.data.api.WeatherApi
-import dmitry.man.weatherapplication.app.data.model.FiveDaysWeatherData
+import dmitry.man.weatherapplication.app.data.model.FiveDaysWeatherModel
 import dmitry.man.weatherapplication.app.data.model.TodayWeatherModel
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.subjects.BehaviorSubject
 
 class WeatherInteractor(
     private val weatherApi: WeatherApi,
-    private val weatherRepo: WeatherRepository
+    private val todayWeatherRepo: TodayWeatherRepository,
+    private val fiveDaysWeatherRepo: FiveDaysWeatherRepository
 ) {
 
-    private val weatherFiveDaysSubject = BehaviorSubject.create<FiveDaysWeatherData>()
-
     fun observeTodayWeather(): Observable<TodayWeatherModel> {
-        return weatherRepo.getAll()
+        return todayWeatherRepo.getAll()
     }
 
-    fun observeFiveDaysWeather(): Observable<FiveDaysWeatherData> {
-        return weatherFiveDaysSubject.hide()
+    fun observeFiveDaysWeather(): Observable<FiveDaysWeatherModel> {
+        return fiveDaysWeatherRepo.getAll()
     }
 
     fun requestTodayWeather(): Completable {
@@ -31,7 +30,7 @@ class WeatherInteractor(
 
             val result = response.body()
                 ?: throw IllegalArgumentException("Today weather response is null")
-            weatherRepo.save(result)
+            todayWeatherRepo.save(result)
         }
     }
 
@@ -43,7 +42,7 @@ class WeatherInteractor(
 
             val result = response.body()
                 ?: throw IllegalArgumentException("Five days weather response is null")
-            weatherFiveDaysSubject.onNext(result)
+            fiveDaysWeatherRepo.save(result)
         }
     }
 

@@ -9,7 +9,7 @@ import dmitry.man.weatherapplication.app.db.entity.TodayWeatherDataEntity
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class WeatherRepository(private val dao: TodayWeatherDao) {
+class TodayWeatherRepository(private val dao: TodayWeatherDao) {
 
     @Inject
     lateinit var todayWeatherDb: TodayWeatherDatabase
