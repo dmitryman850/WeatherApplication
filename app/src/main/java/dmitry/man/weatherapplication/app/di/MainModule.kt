@@ -1,8 +1,13 @@
 package dmitry.man.weatherapplication.app.di
 
+import android.content.Context
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
+import dmitry.man.weatherapplication.app.data.WeatherRepository
 import dmitry.man.weatherapplication.app.data.api.WeatherApi
+import dmitry.man.weatherapplication.app.db.TodayWeatherDatabase
+import dmitry.man.weatherapplication.app.db.dao.TodayWeatherDao
 import dmitry.man.weatherapplication.app.main.interactor.WeatherInteractor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,7 +33,32 @@ class MainModule {
 
     @Singleton
     @Provides
-    fun provideWeatherInteractor(weatherApi: WeatherApi): WeatherInteractor {
-        return WeatherInteractor(weatherApi)
+    fun provideWeatherInteractor(
+        weatherApi: WeatherApi,
+        weatherRepo: WeatherRepository
+    ): WeatherInteractor {
+        return WeatherInteractor(weatherApi, weatherRepo)
+    }
+
+    @Singleton
+    @Provides
+    fun provideTodayWeatherDatabase(context: Context): TodayWeatherDatabase {
+        return Room.databaseBuilder(
+            context,
+            TodayWeatherDatabase::class.java, "todayWeather.db"
+        )
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideTodayWeatherDao(database: TodayWeatherDatabase): TodayWeatherDao {
+        return database.getTodayWeatherDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepository(todayWeatherDao: TodayWeatherDao): WeatherRepository {
+        return WeatherRepository(todayWeatherDao)
     }
 }

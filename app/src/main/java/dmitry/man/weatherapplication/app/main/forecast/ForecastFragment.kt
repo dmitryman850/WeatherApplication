@@ -14,12 +14,11 @@ import dmitry.man.weatherapplication.databinding.FragmentForecastBinding
 
 class ForecastFragment : MvpAppCompatFragment(), ForecastFragmentScreen {
 
-    private lateinit var binding: FragmentForecastBinding
-
     @InjectPresenter
     lateinit var fragmentPresenter: ForecastFragmentPresenter
 
     private lateinit var forecastAdapter: ForecastAdapter
+    private lateinit var binding: FragmentForecastBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,

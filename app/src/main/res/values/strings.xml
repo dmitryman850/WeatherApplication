@@ -9,6 +9,7 @@
     <string name="weather_city_placeholder">%s, %s</string>
     <string name="weather_percent_placeholder">%s %%</string>
     <string name="weather_not_found">N/D</string>
+    <string name="toast_error">Error</string>
     <string name="weather_hpa_placeholder">%s hPa</string>
     <string name="weather_wind_speed_placeholder">%s km/h</string>
     <string name="weather_rain_mm_placeholder">%s mm</string>

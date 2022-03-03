@@ -4,6 +4,8 @@ import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 import dmitry.man.weatherapplication.app.data.model.TodayWeatherData
+import dmitry.man.weatherapplication.app.data.model.TodayWeatherModel
+import dmitry.man.weatherapplication.app.db.entity.TodayWeatherDataEntity
 
 interface TodayFragmentScreen : MvpView {
 
@@ -14,5 +16,5 @@ interface TodayFragmentScreen : MvpView {
     fun showError()
 
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun refreshWeatherData(data: TodayWeatherData)
+    fun refreshWeatherData(data: TodayWeatherModel)
 }

@@ -1,6 +1,7 @@
 package dmitry.man.weatherapplication.app
 
 import android.app.Application
+import dmitry.man.weatherapplication.app.di.ContextModule
 import dmitry.man.weatherapplication.app.di.DaggerMainComponent
 import dmitry.man.weatherapplication.app.di.MainComponent
 
@@ -10,6 +11,7 @@ class WeatherApplication : Application() {
         super.onCreate()
 
         mainComponent = DaggerMainComponent.builder()
+            .contextModule(ContextModule(applicationContext))
             .build()
     }
 
